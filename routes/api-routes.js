@@ -3,22 +3,46 @@
 
 
 const request = require('request');
+const cheerio = require('cheerio');
+const db = require('../models');
 
 // GET route for scraping website
 
 module.exports = function(app) {
 
 app.get("/scrape", function (req, res) {
-    request("http://www.echojs.com/", function(error, response, html){
-    var $ = cheeerio.load(html);
+    request("http://www.nytimes.com/", function(error, response, html){
+    let $ = cheerio.load(html);
 
-    $(".title").each(function(i, element) {
+    $(".theme-summary").each(function(i, element) {
+        let headline = $(this)
+        .children(".story-heading")
+        .text()
+        .trim();
 
-    })
-    })
-    .on('response', function(response){
-        console.log(res)
+        let url = $(this)
+        .children(".story-heading")
+        .children("a")
+        .attr("href");
+
+        let summary = $(this)
+        .children(".summary")
+        .text()
+        .trim();
+
+        let dataToAdd = {
+            headline: headline,
+            url: url,
+            summary: summary
+        };
+        db.Article.create(dataToAdd)
+        .then(function(dbArticle){
+            console.log(dbArticle);
+        }).catch(function (err){
+            return res.JSON(err);
+        });
     });
+    res.send("scrape complete");
 });
-
+})
 }

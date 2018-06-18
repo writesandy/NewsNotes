@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express"); 
 const exphbs = require('express-handlebars');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -27,7 +27,8 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 app.use(express.static("publc"));
 // Connect to Mongo DB
-mongoose.connect("mongodb://localhost/3000")
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://localhost/newarticles")
 
 // require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
