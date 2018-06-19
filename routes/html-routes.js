@@ -5,10 +5,12 @@ const articles = db.Article;
 
 
 const path = require('path');
-// router.use('/', express.static(publicPath));
+
+module.exports = function(app) {
+
+router.use('/', express.static('public'));
 
 router.get('/', function(req,res) {
     res.render('main');
-})
-
-module.exports = router;
+});
+}
