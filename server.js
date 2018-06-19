@@ -23,6 +23,8 @@ app.set('view engine', 'handlebars');
 
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+
 // Use express.static to serve the public folder as a static directory
 
 app.use(express.static("publc"));
@@ -30,7 +32,7 @@ app.use(express.static("publc"));
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/newarticles")
 
-// require("./routes/html-routes.js")(app);
+require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 app.listen(PORT, function() {
