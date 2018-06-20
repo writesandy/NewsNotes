@@ -11,6 +11,8 @@ module.exports = function(app) {
 router.use('/', express.static('public'));
 
 router.get('/', function(req,res) {
-    res.render('main');
+    res.render('index');
 });
 }
+
+// module.exports = router;

@@ -24,16 +24,21 @@ app.set('view engine', 'handlebars');
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 // Use express.static to serve the public folder as a static directory
 
-app.use(express.static("publc"));
+app.use(express.static("public"));
 // Connect to Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/newarticles")
 
-require("./routes/html-routes.js")(app);
+// require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
+
+app.get('/', function(req,res) {
+  res.render('main');
+});
 
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
