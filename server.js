@@ -33,12 +33,11 @@ app.use(express.static("public"));
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/newarticles")
 
-// require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
-app.get('/', function(req,res) {
-  res.render('main');
-});
+app.get('/', function (req, res) {
+  res.render('index');
+})
 
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
