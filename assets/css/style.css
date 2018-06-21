@@ -5,7 +5,6 @@ html {
   
   body {
     margin-bottom: 80px;
-    background-color: tomato;
   }
   
   .footer {
@@ -155,4 +154,9 @@ html {
   .note.list-group-item .btn {
     position: relative;
     bottom: 10px;
+  }
+
+  .thumbnail {
+    /* display: inline-block; */
+    max-height: 150%;
   }

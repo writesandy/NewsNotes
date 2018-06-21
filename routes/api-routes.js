@@ -60,6 +60,16 @@ app.get("/articles", function(req, res) {
       });
   });
 
+  app.get('/', function (req, res) {
+    db.Article.find({ saved: false}, function(err,data){
+      const hbsObject ={
+        article: data,
+      }
+      res.render('index-2', hbsObject);
+    })
+  
+  })
+
   
   
 }

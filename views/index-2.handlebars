@@ -20,16 +20,17 @@
     <p>New York Times Edition</p>
   </div>
 </div>
-{{#each dbArticles }}
+
 <div class="row">
+  {{#each article }}
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <div class="caption" id="headline">
-        <li role="headline"><a href="{{ url }}"><h3>{{ headline }}</h3></a></li>
+        <div role="headline"><a href="{{ url }}"><h4>{{ headline }}</h4></a></div>
         <p class="summary">{{ summary }}</p>
         <p><a href="#" class="btn btn-primary" role="button">DELETE FROM SAVED</a> <a href="#" class="btn btn-default" role="button">ARTICLE NOTES</a></p>
       </div>
     </div>
   </div>
+  {{/each}}
 </div>
-{{/each}}
