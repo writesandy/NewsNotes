@@ -24,14 +24,14 @@
 
 <div class="row">
   {{#each article }}
-  <div class= "panel panel-default">
-      <div style="text-align:center">
-        <div class="caption" id="headline"></div>
-          <div role="headline"><a href="{{ url }}"><h4>{{ headline }}</h4></a></div>
-          <p class="summary">{{ summary }}</p>
-            <p><a href="#" class="btn btn-info" class="savearticle" role="button">SAVE ARTICLE</a></p>
-            </div>
-            </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <div class="caption" id="headline">
+        <div role="headline"><a href="{{ url }}"><h4>{{ headline }}</h4></a></div>
+        <p class="summary">{{ summary }}</p>
+        <p><a href="#" class="btn btn-info" role="button">SAVE ARTICLE</a> <a href="#" class="btn btn-success" role="button">ARTICLE NOTES</a></p>
+      </div>
+    </div>
   </div>
   {{/each}}
 </div>

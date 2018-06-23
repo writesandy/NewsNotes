@@ -156,7 +156,7 @@ html {
     bottom: 10px;
   }
 
-  .thumbnail {
-    /* display: inline-block; */
-    max-height: 150%;
+  div.thumbnail {
+    height: 100%;
   }
+

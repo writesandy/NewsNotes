@@ -1,7 +1,3 @@
-// Routes
-// https://umn.bootcampcontent.com/University-of-Minnesota-Boot-Camp/MINSTP201802FSF1-Class-Repository-FSF/blob/master/18-mongo-mongoose/01-Activities/11-Scraping-into-a-db/Solved/server.js
-
-
 const request = require('request');
 const cheerio = require('cheerio');
 const db = require('../models');
@@ -9,6 +5,15 @@ const db = require('../models');
 // GET route for scraping website
 
 module.exports = function(app) {
+
+app.get('/', function (req, res) {
+  db.Article.find({ saved: false}, function(err,data){
+    const hbsObject ={
+      article: data,
+    }
+    res.render('index-2', hbsObject);
+  })
+})
 
 app.get("/scrape", function (req, res) {
     request("http://www.nytimes.com/", function(error, response, html){
@@ -35,6 +40,7 @@ app.get("/scrape", function (req, res) {
             url: url,
             summary: summary
         };
+
         db.Article.create(dataToAdd)
         .then(function(dbArticle){
             console.log(dbArticle);
@@ -42,7 +48,8 @@ app.get("/scrape", function (req, res) {
             return res.JSON(err);
         });
     });
-    res.send("scrape complete");
+    // res.send("scrape complete");
+    res.redirect('/')
 });
 })
 
@@ -60,8 +67,24 @@ app.get("/articles", function(req, res) {
       });
   });
 
-  app.get('/', function (req, res) {
-    db.Article.find({ saved: false}, function(err,data){
+  // POST to save an article
+  // app.post("/savearticle/:id", function (req, res) {
+  //   db.Article.findByIdAndUpdate({
+  //       _id: req.params.id
+  //     }, {
+  //       saved: true
+  //     })
+  //     .then(function (dbArticle) {
+  //       res.json(dbArticle);
+  //     })
+  //     .catch(function (err) {
+  //       res.json(err);
+  //     })
+  // });
+
+
+  app.get('/saved', function (req, res) {
+    db.Article.find({ saved: true}, function(err,data){
       const hbsObject ={
         article: data,
       }

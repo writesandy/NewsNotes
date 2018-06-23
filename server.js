@@ -35,8 +35,6 @@ mongoose.connect("mongodb://localhost/newarticles")
 
 require("./routes/api-routes.js")(app);
 
-
-
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
   });
