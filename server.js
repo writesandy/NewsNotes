@@ -30,8 +30,9 @@ app.use(bodyParser.text());
 
 app.use(express.static("public"));
 // Connect to Mongo DB
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newarticles";
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/newarticles")
+mongoose.connect(MONGODB_URI);
 
 require("./routes/api-routes.js")(app);
 
